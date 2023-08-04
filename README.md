@@ -66,7 +66,7 @@ This Flutter application demonstrates how to implement Discord OAuth2 authentica
 1. Run the application:
 
    ```
-   flutter run
+   flutter run -d chrome --web-port 8080
    ```
 
 2. Click the "Login With Discord OAuth2" button to initiate the authentication process.
@@ -78,10 +78,57 @@ This Flutter application demonstrates how to implement Discord OAuth2 authentica
 - The `flutter_web_auth` package is used for handling web authentication.
 - The `http` package is used for making HTTP requests.
 - After successful authentication, this demo fetches the user's information using Discord's API.
-
-## License 📄
+  
+ - Setting Up a Discord Application for OAuth2
+   OAuth2 is a secure authorization framework that allows applications to access user data without exposing sensitive information. Setting up a Discord application for OAuth2 involves creating an application on the Discord Developer Portal and configuring the necessary settings to enable OAuth2 authentication.
+   
+   Prerequisites
+   Discord Account: You need a Discord account to access the Discord Developer Portal.
+   
+   Basic Programming Knowledge: You should have a basic understanding of programming concepts and web development.
+   
+   Steps to Set Up a Discord Application for OAuth2
+   Follow these steps to set up a Discord application for OAuth2:
+   
+   Create a New Application:
+   
+   Go to the Discord Developer Portal.
+   Log in with your Discord account if you're not already logged in.
+   Click on the "New Application" button.
+   Enter a name for your application and click "Create".
+   Configure OAuth2 Redirects:
+   
+   In the left sidebar, select "OAuth2".
+   In the "Redirects" section, click "Add Redirect".
+   Enter the redirect URL where Discord will send the user after authentication. This URL should be handled by your application to complete the OAuth2 flow.
+   Get Client ID and Client Secret:
+   
+   In the "General Information" section, you will find your "Client ID" and "Client Secret". Keep these values secure, as they are used for authenticating your application with Discord's OAuth2 API.
+   Select OAuth2 Scopes:
+   
+   Under the "OAuth2" section, you'll see a list of OAuth2 scopes. These scopes determine the level of access your application will have. Select the scopes you need based on your application's functionality. Common scopes include:
+   identify: Access to the user's identity information.
+   guilds: Access to the user's guilds (servers).
+   messages.read: Access to read messages in the user's DMs.
+   Generate OAuth2 URL:
+   
+   In the "OAuth2" section, you'll see a "OAuth2 URL Generator". Select the scopes you added and copy the generated OAuth2 URL.
+   Implement OAuth2 Flow:
+   
+   In your application, implement the OAuth2 flow using the OAuth2 URL you generated. Guide users through the authorization process:
+   Redirect them to the generated OAuth2 URL.
+   Users will be prompted to authorize your application's access to their data.
+   After authorization, Discord will redirect users back to the URL you specified, along with an authorization code.
+   Use the authorization code to exchange for an access token and refresh token by making a POST request to https://discord.com/api/oauth2/token.
+   Handle Data:
+   
+   Once you have the access token, you can use it to make authorized API requests to Discord on behalf of the user. Be sure to handle the data securely and respect user privacy.
+   Refresh Tokens:
+   
+   Access tokens have a limited lifespan. To maintain access, use the refresh token to request a new access token without requiring user reauthorization.
+   Remember to thoroughly review the Discord API documentation for detailed information on endpoints, authentication, and data usage.
+   
+   By following these steps, you can set up a Discord application for OAuth2 and enable secure and authorized access to user data.
+   ## License 📄
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
-
-Make sure to replace `<!-- Paste your auth.html code here -->` with the actual HTML code you want users to include in their `auth.html` file. This will provide users with clear instructions on what needs to be done to make the application work correctly.
