@@ -72,6 +72,58 @@ This Flutter application demonstrates how to implement Discord OAuth2 authentica
 2. Click the "Login With Discord OAuth2" button to initiate the authentication process.
 
 3. Once authenticated, the app will fetch user information including email and identity.
+4. 
+## Error Troubleshooting 🛠️
+
+### 1. Invalid Redirect URI Error
+
+**Error Message:** When trying to authenticate, you might encounter an "Invalid Redirect URI" error.
+
+**Possible Causes:**
+- The Redirect URI you provided in your Discord Developer Portal does not match the one used in your Flutter app.
+
+**Troubleshooting Steps:**
+- Double-check the Redirect URI you set in the "OAuth2 Redirects" section of your Discord Developer Portal.
+- Ensure that the Redirect URI in your Flutter app's code (`lib/main.dart`) matches the one set in the portal.
+
+### 2. Missing User Information After Authentication
+
+**Error Message:** After successful authentication, the app does not fetch the expected user information.
+
+**Possible Causes:**
+- Incorrect API endpoint or scope configuration.
+- Network issues preventing the app from fetching data.
+
+**Troubleshooting Steps:**
+- Review your API endpoint URLs and ensure they are correctly configured in your app (`lib/main.dart`).
+- Verify that the OAuth2 scopes you selected in the portal cover the required access.
+- Check your network connectivity to ensure the app can make HTTP requests.
+
+### 3. CORS (Cross-Origin Resource Sharing) Error
+
+**Error Message:** You encounter a CORS error when attempting to authenticate or fetch data.
+
+**Possible Causes:**
+- The server hosting your Flutter app and the OAuth2 callback URL have mismatched origins.
+
+**Troubleshooting Steps:**
+- Make sure that the origins for your Flutter app and OAuth2 callback URL match. For local testing, you can use `'http://localhost:8080'`.
+- Check the server configuration to ensure it allows cross-origin requests from your app's origin.
+
+### 4. Discord API Errors
+
+**Error Message:** You receive errors from the Discord API when trying to exchange authorization code for tokens or fetching user data.
+
+**Possible Causes:**
+- Incorrect token exchange or API request implementation.
+- Invalid or expired tokens.
+
+**Troubleshooting Steps:**
+- Review your code for token exchange (`_loginWithDiscord` function) and API requests. Ensure you follow the correct syntax and headers as per Discord's documentation.
+- If you're encountering token issues, ensure that you're exchanging the authorization code for tokens correctly.
+- Check the expiration time of tokens and implement token refreshing if necessary.
+
+If you encounter any other issues or errors, don't hesitate to seek help from the Flutter community or refer to the Discord API documentation for more details.
 
 ## Notes 📝
 
